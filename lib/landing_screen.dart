@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:getwellsoon_apk/pages/article_screen.dart';
+import 'mood_tracker_screen.dart';
+import 'journal_log_screen.dart';
+import 'meditation_screen.dart';
+import 'music_screen.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({Key? key}) : super(key: key);
@@ -166,12 +171,23 @@ class _LandingScreenState extends State<LandingScreen> {
               break;
             case 1:
               // Journal page
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const JournalLogScreen()),
+              );
               break;
             case 2:
               // Notes page
+              // You can add navigation to a Notes screen here
               break;
             case 3:
               // Relax page
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const MeditationScreen()),
+              );
               break;
             case 4:
               // Logout
@@ -197,11 +213,48 @@ class _LandingScreenState extends State<LandingScreen> {
       leading: Icon(icon),
       title: Text(title),
       onTap: () {
-        // TODO: Implement navigation to respective screens
-        Navigator.pop(context);
+        Navigator.pop(context); // Close the drawer
         setState(() {
           _selectedIndex = index;
         });
+
+        // Navigate to respective screens based on index
+        switch (index) {
+          case 0: // Main Page
+            // Already on the main page, no navigation needed
+            break;
+          case 1: // Mood Tracker
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const MoodTrackerScreen()),
+            );
+            break;
+          case 2: // Journal Log
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const JournalLogScreen()),
+            );
+            break;
+          case 3: // Articles
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ArticlesScreen()),
+            );
+            break;
+          case 4: // Meditation
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const MeditationScreen()),
+            );
+            break;
+          case 5: // Music
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const MusicScreen()),
+            );
+            break;
+        }
       },
     );
   }
